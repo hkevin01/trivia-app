@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "name": "QuizRally Trivia App",
+  "description": "Cross-platform trivia game with real-time multiplayer features, anti-cheat system, and comprehensive backend services",
+  "preferences": {
+    "codeStyle": {
+      "indentSize": 2,
+      "useSpaces": true,
+      "maxLineLength": 100,
+      "enforceTrailingComma": true
+    },
+    "languages": {
+      "typescript": {
+        "preferConst": true,
+        "useOptionalChaining": true,
+        "enforceReturnTypes": true
+      },
+      "python": {
+        "enforceTypeHints": true,
+        "preferBlackFormatting": true,
+        "maxComplexity": 10
+      },
+      "dart": {
+        "enforceFlutterConventions": true,
+        "preferAsyncAwait": true,
+        "useWidgetTesting": true
+      }
+    },
+    "frameworks": {
+      "flutter": {
+        "targetVersion": "3.16.0",
+        "preferStatelessWidgets": true,
+        "useRiverpod": true
+      },
+      "nodejs": {
+        "targetVersion": "18",
+        "preferESModules": true,
+        "useTypeScript": true
+      }
+    },
+    "architecture": {
+      "backend": "microservices",
+      "frontend": "flutter_mobile",
+      "database": "postgresql",
+      "cache": "redis",
+      "messageQueue": "websocket"
+    }
+  },
+  "prompts": {
+    "codeGeneration": "Generate production-ready code with proper error handling, logging, and security considerations. Follow established patterns in the codebase.",
+    "testing": "Create comprehensive tests including unit, integration, and end-to-end tests. Focus on edge cases and error scenarios.",
+    "security": "Implement security best practices including input validation, authentication, authorization, and protection against common vulnerabilities.",
+    "performance": "Optimize for performance considering real-time requirements and scalability needs for multiplayer gaming."
+  },
+  "context": {
+    "projectType": "multiplayer_game",
+    "industry": "gaming",
+    "scale": "medium",
+    "realTimeRequirements": true,
+    "securityCritical": true,
+    "mobilePlatforms": ["ios", "android"],
+    "backendTechnologies": ["nodejs", "python", "postgresql", "redis", "docker"],
+    "frontendTechnologies": ["flutter", "dart"]
+  },
+  "antiPatterns": [
+    "hardcoded_secrets",
+    "blocking_io_in_main_thread",
+    "unhandled_exceptions",
+    "memory_leaks",
+    "insecure_data_transmission",
+    "race_conditions"
+  ],
+  "bestPractices": [
+    "dependency_injection",
+    "proper_error_handling",
+    "comprehensive_logging",
+    "input_validation",
+    "secure_authentication",
+    "automated_testing",
+    "code_documentation"
+  ]
+}

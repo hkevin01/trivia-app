@@ -1,0 +1,85 @@
+name: Build Mobile Apps
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: [ 'src/mobile/**' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'src/mobile/**' ]
+
+jobs:
+  build-android:
+    name: Build Android
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.16.0'
+        channel: 'stable'
+
+    - name: Flutter Dependencies
+      run: |
+        cd src/mobile
+        flutter pub get
+
+    - name: Build APK
+      run: |
+        cd src/mobile
+        flutter build apk --release
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-apk
+        path: src/mobile/build/app/outputs/flutter-apk/app-release.apk
+
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.16.0'
+        channel: 'stable'
+
+    - name: Flutter Dependencies
+      run: |
+        cd src/mobile
+        flutter pub get
+
+    - name: Build iOS
+      run: |
+        cd src/mobile
+        flutter build ios --release --no-codesign
+
+    - name: Archive iOS App
+      run: |
+        cd src/mobile/ios
+        xcodebuild -workspace Runner.xcworkspace \
+                   -scheme Runner \
+                   -configuration Release \
+                   -archivePath build/Runner.xcarchive \
+                   archive
+
+    - name: Upload iOS Archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-archive
+        path: src/mobile/ios/build/Runner.xcarchive

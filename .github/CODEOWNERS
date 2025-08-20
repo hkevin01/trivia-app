@@ -1,0 +1,44 @@
+# Code Owners
+
+# Global owners
+* @maintainer-team
+
+# Backend services
+/src/backend/ @backend-team @security-team
+/src/backend/services/anti-cheat/ @security-team @backend-team
+/src/backend/services/scoring/ @game-logic-team @backend-team
+
+# Mobile application
+/src/mobile/ @mobile-team @ui-ux-team
+
+# Shared libraries and utilities
+/src/shared/ @backend-team @mobile-team
+
+# Infrastructure and DevOps
+/docker-compose.yml @devops-team
+/Dockerfile* @devops-team
+/.github/workflows/ @devops-team @security-team
+/scripts/ @devops-team
+
+# Documentation
+/docs/ @docs-team @maintainer-team
+/README.md @docs-team @maintainer-team
+/*.md @docs-team
+
+# Configuration files
+/.github/ @maintainer-team @devops-team
+/.vscode/ @maintainer-team
+/.*rc @devops-team
+/.*config.* @devops-team
+
+# Security-sensitive files
+/.github/workflows/ @security-team @devops-team
+/src/backend/services/anti-cheat/ @security-team
+/.env* @security-team @devops-team
+
+# Testing
+/tests/ @qa-team @backend-team @mobile-team
+/**/*test* @qa-team
+
+# Database and data
+/data/ @backend-team @database-team
