@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { authenticateToken } from '../middleware/auth.js';
-import { validateInputs } from '../middleware/validation.js';
+import { authenticate } from '../middleware/auth.js';
+import { handleValidationErrors } from '../middleware/validation.js';
 import {
   createCategory,
   getCategory,
@@ -56,22 +56,26 @@ router.get('/:categoryId', getCategory);
 // POST /api/categories - Create new category (Host only)
 router.post(
   '/',
-  authenticateToken,
+  authenticate,
   categoryValidation,
-  validateInputs,
+  handleValidationErrors,
   createCategory
 );
 
 // PUT /api/categories/:categoryId - Update category (Host only)
 router.put(
   '/:categoryId',
-  authenticateToken,
+  authenticate,
   categoryUpdateValidation,
-  validateInputs,
+  handleValidationErrors,
   updateCategory
 );
 
 // DELETE /api/categories/:categoryId - Delete category (Host only)
-router.delete('/:categoryId', authenticateToken, deleteCategory);
+router.delete(
+  '/:categoryId',
+  authenticate,
+  deleteCategory
+);
 
 export default router;
