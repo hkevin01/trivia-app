@@ -100,8 +100,12 @@ app.get('/health', async (req, res) => {
 
 // API routes
 import authRoutes from './routes/auth.js';
+import questionRoutes from './routes/questions.js';
+import categoryRoutes from './routes/categories.js';
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/questions', questionRoutes);
+app.use('/api/v1/categories', categoryRoutes);
 
 app.get('/api/v1', (req, res) => {
   res.json({

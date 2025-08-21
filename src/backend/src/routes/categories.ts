@@ -72,10 +72,6 @@ router.put(
 );
 
 // DELETE /api/categories/:categoryId - Delete category (Host only)
-router.delete(
-  '/:categoryId',
-  authenticate,
-  deleteCategory
-);
+router.delete('/:categoryId', authenticate, deleteCategory);
 
 export default router;
